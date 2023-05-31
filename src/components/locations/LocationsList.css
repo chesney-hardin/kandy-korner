@@ -1,0 +1,17 @@
+.locations{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.location{
+    border: 2px solid rgb(253, 79, 204);
+    background-color: gold;
+    padding: 0.5rem 1rem;
+    margin: 2rem;
+}
+
+.location__header {
+    border-bottom: 2px dashed rgb(253, 79, 204);
+    text-align: center;
+}
