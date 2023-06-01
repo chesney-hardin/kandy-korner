@@ -26,7 +26,7 @@ export const LocationsList = () => {
             {
                 locations.map(
                     (location) => {
-                        return <section class="location">
+                        return <section class="location" key={`location--${location.id}`}>
                             <h3>Location #{location.id}</h3>
                             <ul>
                                 <li>Address: {location.address}</li>

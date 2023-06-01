@@ -1,0 +1,24 @@
+
+.products{
+    border: 3px solid rgb(253, 79, 204);
+    background-color: gold;
+    padding: 0.5rem 2rem;
+    margin: 2rem;
+    color: rgb(0, 38, 255);
+    text-shadow: .5px .5px .5px darkorchid;
+}
+
+.product__header {
+    border-bottom: 2px dashed rgb(253, 79, 204);
+    text-align: center;
+}
+
+.btn_topPriced {
+    border: 2px solid rgb(253, 79, 204);
+    background-color: gold;
+    box-shadow: 2px 2px 1px rgb(253, 79, 204);
+}
+
+.btn_topPriced:hover {
+    cursor: pointer;
+}
