@@ -1,11 +1,9 @@
 
 .products{
-    border: 3px solid rgb(253, 79, 204);
-    background-color: gold;
-    padding: 0.5rem 2rem;
+    border: 2px solid rgb(253, 79, 204);
+    background-color: lightgoldenrodyellow;
+    padding: 1rem 3rem;
     margin: 2rem;
-    color: rgb(0, 38, 255);
-    text-shadow: .5px .5px .5px darkorchid;
 }
 
 .product__header {
@@ -15,8 +13,8 @@
 
 .btn_topPriced {
     border: 2px solid rgb(253, 79, 204);
-    background-color: gold;
-    box-shadow: 2px 2px 1px rgb(253, 79, 204);
+    background-color: lightgoldenrodyellow;
+    box-shadow: 1px 1px 1px rgb(253, 79, 204);
 }
 
 .btn_topPriced:hover {

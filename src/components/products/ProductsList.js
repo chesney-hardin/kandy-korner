@@ -6,6 +6,7 @@ hint: use localStorage.getItem("kandy_user") and then use JSON.parse to save the
 
 import { useEffect, useState } from "react"
 import "./ProductsList.css"
+import { useNavigate } from "react-router-dom"
 
 
 // Declare and export a function to fetch and generate the products list for employees
@@ -15,6 +16,8 @@ export const ProductsList = () => {
     const [products, setProducts] = useState([])
     const [sortedProducts, setSortedProducts] = useState([])
     const [topPriced, setTopPriced] = useState(false)
+
+    const navigate = useNavigate()
 
     const localKandyUser = localStorage.getItem("kandy_user")
     const kandyUserObject = JSON.parse(localKandyUser)
@@ -64,9 +67,9 @@ export const ProductsList = () => {
             kandyUserObject.staff ?
 
                 <>
-                    <h2 class="product__header">Products List</h2>
+                    <h2 className="product__header">Products List</h2>
 
-                    <button class="btn_topPriced" onClick={() => { setTopPriced(true) }}>Top Priced</button>
+                    <button className="btn_topPriced" onClick={() => { setTopPriced(true) }}>Top Priced</button>
 
                     <ul className="products">
                         {
@@ -79,6 +82,8 @@ export const ProductsList = () => {
                             )
                         }
                     </ul>
+
+                    <button className="btn_createNewProduct" onClick={() => navigate("/product/create")}>Add a New Product</button>
                 </>
                 : <>
                     ""</>
