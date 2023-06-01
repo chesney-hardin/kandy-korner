@@ -6,6 +6,7 @@ Then send the data to our permanent database with a POST request
 
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import "./ProductForm.css"
 
 //Export and define function to handle HTML, fetching, and POST request for ticket form
 export const ProductForm = () => {
@@ -13,16 +14,13 @@ export const ProductForm = () => {
     // Establish initial state object with default properties for form
     const [product, setNewProduct] = useState({
         name: "",
-        type: "",
+        type: 0,
         price: 0
     })
 
 
     // Add the useNavigate hook
     const navigate = useNavigate()
-
-    //??? Get the kandy_user object from local storage???
-
 
     // Define click event for submitting the form
     const handleSaveButtonClick = (event) => {
@@ -85,7 +83,7 @@ export const ProductForm = () => {
                         onChange={
                             (evt) => {
                                 const copy = { ...product }
-                                copy.price = evt.target.value
+                                copy.price = JSON.parse(evt.target.value)
                                 setNewProduct(copy)
                             }
                         } />
@@ -96,7 +94,7 @@ export const ProductForm = () => {
                         onChange={
                             (evt) => {
                                 const copy = { ...product }
-                                copy.type = evt.target.value
+                                copy.type = JSON.parse(evt.target.value)
                                 setNewProduct(copy)
                             }
                         } >

@@ -71,6 +71,8 @@ export const ProductsList = () => {
 
                     <button className="btn_topPriced" onClick={() => { setTopPriced(true) }}>Top Priced</button>
 
+                    <button className="btn_createNewProduct" onClick={() => navigate("/product/create")}>Add a New Product</button>
+
                     <ul className="products">
                         {
                             sortedProducts.map(
@@ -83,7 +85,7 @@ export const ProductsList = () => {
                         }
                     </ul>
 
-                    <button className="btn_createNewProduct" onClick={() => navigate("/product/create")}>Add a New Product</button>
+
                 </>
                 : <>
                     ""</>
