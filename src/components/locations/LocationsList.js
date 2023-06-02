@@ -20,13 +20,13 @@ export const LocationsList = () => {
     )
 
     return <>
-        <h2 class="location__header">List of Locations</h2>
+        <h2 className="location__header">List of Locations</h2>
 
         <article className="locations">
             {
                 locations.map(
                     (location) => {
-                        return <section class="location" key={`location--${location.id}`}>
+                        return <section className="location" key={`location--${location.id}`}>
                             <h3>Location #{location.id}</h3>
                             <ul>
                                 <li>Address: {location.address}</li>

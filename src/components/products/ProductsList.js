@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom"
 
 // Declare and export a function to fetch and generate the products list for employees
 
-export const ProductsList = () => {
+export const ProductsList = ({ searchTermState }) => {
     // Establish state. We declare our state called products with an initial state of an empty array.
     const [products, setProducts] = useState([])
     const [sortedProducts, setSortedProducts] = useState([])
@@ -21,6 +21,16 @@ export const ProductsList = () => {
 
     const localKandyUser = localStorage.getItem("kandy_user")
     const kandyUserObject = JSON.parse(localKandyUser)
+
+    useEffect(
+        () => {
+            const searchedProducts = products.filter(product => {
+                return product.name.toLowerCase().startsWith(searchTermState.toLowerCase())
+            })
+            setSortedProducts(searchedProducts)
+        },
+        [searchTermState]
+    )
 
     // When products=[] (initial state), fetch the products data
     useEffect(
@@ -88,7 +98,18 @@ export const ProductsList = () => {
 
                 </>
                 : <>
-                    ""</>
+
+                    <ul className="products">
+                        {
+                            sortedProducts.map(
+                                (product) => {
+                                    return <li className="product" key={`product--${product.id}`}>
+                                        {product.name}-- ${product.price}
+                                    </li>
+                                }
+                            )
+                        }
+                    </ul></>
         }
 
     </>
