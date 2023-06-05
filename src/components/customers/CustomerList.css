@@ -1,0 +1,23 @@
+
+.customers{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.customers__header {
+    border-bottom: 2px dashed rgb(253, 79, 204);
+    margin-top: 20px;
+    text-align: center;
+}
+
+.customer {
+    border: 2px solid rgb(253, 79, 204);
+    background-color: lightgoldenrodyellow;
+    padding: 1rem;
+    margin: .8rem;
+    
+}
+
+
+
+

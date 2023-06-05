@@ -1,0 +1,12 @@
+.customer--details{
+    border: 2px solid rgb(253, 79, 204);
+    background-color: lightgoldenrodyellow;
+    padding: 1rem;
+    margin: .8rem;
+}
+
+header {
+    font-weight: bold;
+    border-bottom: 1px dotted darkmagenta;
+    margin-bottom: 0.6rem;
+}

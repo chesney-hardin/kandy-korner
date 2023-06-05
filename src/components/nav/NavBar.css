@@ -2,6 +2,9 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: left;
+    background: linear-gradient(#b91994, #1e2aad);
+    margin: 0 -50px;
+    padding: 10px 40px 10px 40px;;
 }
 
 .navbar__item {
@@ -9,7 +12,13 @@
     list-style-type: none;
 }
 
+.navbar__link{
+    color: yellow;
+}
+
 .navbar__logout {
     margin-left: auto;
 }
+
+
 
