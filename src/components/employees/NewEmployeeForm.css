@@ -1,0 +1,33 @@
+.employeeForm {
+    border: 2px solid rgb(253, 79, 204);
+    background-color: lightgoldenrodyellow;
+    padding: 1rem 3rem;
+    margin: 2rem;
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group{
+    margin-bottom: 15px;
+}
+
+.btn-submitEmployee{
+    border: 2px solid rgb(253, 79, 204);
+    background-color: rgba(255, 255, 255, 0.885);
+    border-radius: 10%;
+    box-shadow: 1px 1px 1px rgb(253, 79, 204);
+    padding: .2rem .7rem;
+    align-self: flex-end;
+    max-width: 150px;
+}
+
+
+.btn-submitEmployee:hover {
+    cursor: pointer;
+}
+
+select {
+    padding: 7px;
+    margin-left: 10px;
+}

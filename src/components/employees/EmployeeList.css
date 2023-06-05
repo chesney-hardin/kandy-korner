@@ -1,0 +1,40 @@
+
+.employees{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.employees__header {
+    border-bottom: 2px dashed rgb(253, 79, 204);
+    margin-top: 20px;
+    text-align: center;
+}
+
+.employee--details {
+    border: 2px solid rgb(253, 79, 204);
+    background-color: lightgoldenrodyellow;
+    padding: 1rem;
+    margin: .8rem;
+    
+}
+
+header {
+    font-weight: bold;
+    border-bottom: 1px dotted darkmagenta;
+    margin-bottom: 0.6rem;
+}
+
+
+
+.btn_createNewEmployee {
+    border: 2px solid rgb(253, 79, 204);
+    background-color: lightgoldenrodyellow;
+    border-radius: 10%;
+    box-shadow: 1px 1px 1px rgb(253, 79, 204);
+    padding: .2rem .7rem;
+    margin: 20px 10px;
+}
+
+.btn_createNewEmployee:hover {
+    cursor: pointer;
+}
