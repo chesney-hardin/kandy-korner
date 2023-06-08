@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import "./CustomerDetails.css"
 
 
@@ -23,8 +23,8 @@ export const CustomerDetails = () => {
     return <section className="customer--details">
         <header>{customer?.user?.fullName}</header>
         <div>Email: {customer?.user?.email}</div>
-        <div>Loyalty Number: {customer.loyaltyNumber}</div>
+        <Link className="loyaltyNumber__link" to={`/customers/${customerId}/loyaltyform`}>Loyalty Number: {customer.loyaltyNumber}</Link>
 
 
     </section>
-}
+} 
