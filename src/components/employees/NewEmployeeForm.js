@@ -26,6 +26,18 @@ export const NewEmployeeForm = () => {
         payRate: 0,
         locationId: 0
     })
+    const [locations, setAllLocations] = useState([])
+
+    useEffect(
+        () => {
+            fetch(`http://localhost:8088/locations`)
+            .then(response => response.json())
+            .then((locationsArray) => {
+                setAllLocations(locationsArray)
+            })
+        },
+        []
+    )
 
 
 // Add the useNavigate hook
@@ -110,11 +122,12 @@ return (
                             setNewEmployee(copy)
                         }
                     } >
-                    <option value="">Select location</option>
-                    <option value="1">2802 Zula Locks</option>
-                    <option value="2">56849 Fadel Gateway</option>
-                    <option value="3">7346 Ritchie Road</option>
-                    <option value="4">589 Tricolor Drive</option>
+                    <option value="0">Select location</option>
+                    {
+                        locations.map((location) => 
+                        <option value={location.id}>{location.address}</option>
+                    )
+                    }
                 </select>
             </div>
             <div className="form-group">

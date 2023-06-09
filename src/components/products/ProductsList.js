@@ -16,6 +16,14 @@ export const ProductsList = ({ searchTermState }) => {
     const [products, setProducts] = useState([])
     const [sortedProducts, setSortedProducts] = useState([])
     const [topPriced, setTopPriced] = useState(false)
+    const [customers, setCustomers] = useState([])
+
+    const [ newPurchase, setNewPurchase] = useState({
+        customerId: 0,
+        locationInventoryId: 0,
+        purchaseQuantity: 0,
+        productId: 0
+    })
 
     const navigate = useNavigate()
 
@@ -32,25 +40,33 @@ export const ProductsList = ({ searchTermState }) => {
         [searchTermState]
     )
 
+
     // When products=[] (initial state), fetch the products data
     useEffect(
         () => {
-            fetch("http://localhost:8088/products?_expand=type")
+            fetch("http://localhost:8088/products?_expand=type&_embed=locationInventories")
                 .then(response => response.json())
                 .then((productsArray) => {
                     setProducts(productsArray)
                 })
+
+                fetch("http://localhost:8088/customers")
+                .then(response => response.json())
+                .then((customersArray) => {
+                    setCustomers(customersArray)
+                })
         },
         []
     )
+   
 
     // If an employee, sort products by name 
     useEffect(
         () => {
-            if (kandyUserObject.staff) {
-                const sortedProducts = products.sort((a, b) => a.name.localeCompare(b.name))
-                setSortedProducts(sortedProducts)
-            }
+
+            const sortedProducts = products.sort((a, b) => a.name.localeCompare(b.name))
+            setSortedProducts(sortedProducts)
+
         }, [products]
     )
 
@@ -64,6 +80,46 @@ export const ProductsList = ({ searchTermState }) => {
         },
         [topPriced]
     )
+    
+    const savePurchase = (product) => {
+
+        // need to find customerId (customer with matching userId)
+        const matchingCustomer = customers.find((customer) => {
+            return customer.userId === kandyUserObject.id;
+          })          
+        const matchingCustomerId = matchingCustomer.id
+        
+ 
+        // set the purchase object
+        const purchaseObjectToSend = {
+            customerId: matchingCustomerId,
+            locationInventoryId: product?.locationInventories[0]?.id,
+            purchaseQuantity: 1,
+            productId: product.id
+        }
+
+        setNewPurchase(purchaseObjectToSend)
+                                        
+    }
+
+
+    
+    useEffect(
+    () => {
+        if(newPurchase.customerId!==0) {
+        fetch("http://localhost:8088/purchases", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newPurchase)
+        })
+    }
+    },
+    [newPurchase]
+) 
+
+
 
     /* Products List HTML. Display name and price.
         -Check if kandy_user is an employee
@@ -103,9 +159,17 @@ export const ProductsList = ({ searchTermState }) => {
                         {
                             sortedProducts.map(
                                 (product) => {
+
                                     return <li className="product" key={`product--${product.id}`}>
                                         {product.name}-- ${product.price}
+
+                                        <button
+                                            onClick={()=> {savePurchase(product)}}
+                                                
+                                            className="btn btn-purchase"
+                                        >Purchase</button>
                                     </li>
+
                                 }
                             )
                         }

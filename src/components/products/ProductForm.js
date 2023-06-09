@@ -4,7 +4,7 @@ Form should include: product name, product type, and price.
 Then send the data to our permanent database with a POST request
 */
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "./ProductForm.css"
 
@@ -17,6 +17,16 @@ export const ProductForm = () => {
         type: 0,
         price: 0
     })
+    const [types, setTypes] = useState([])
+
+    useEffect(()=> {
+        fetch(`http://localhost:8088/types`)
+        .then(response=>response.json())
+        .then((typesArray)=> {
+            setTypes(typesArray)}
+        )
+    },
+    [])
 
 
     // Add the useNavigate hook
@@ -98,11 +108,11 @@ export const ProductForm = () => {
                                 setNewProduct(copy)
                             }
                         } >
-                        <option value="">Select type</option>
-                        <option value="1">sour candy</option>
-                        <option value="2">chocolate</option>
-                        <option value="3">bizarre</option>
-                        <option value="4">gummies</option>
+                        <option value="0">Select type</option>
+                        {types.map((type) =>
+                        <option value={type.id}>{type.type}</option>
+                        )}
+                        
                     </select>
                 </div>
             </fieldset>
