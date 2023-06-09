@@ -19,6 +19,30 @@ export const EmployeeList = () => {
         []
     )
 
+    // Create a function that fetches all of the employees again
+    const getAllTheEmployees = () => {
+        fetch('http://localhost:8088/employees?_expand=user&_expand=location')
+            .then(response => response.json())
+            .then((employeeArray) => {
+                setEmployees(employeeArray)
+            })
+    }
+
+    const fireClick = (employee) => {
+
+        //execute a delete fetch call for employee clicked on
+        fetch(`http://localhost:8088/employees/${employee.id}`, {
+            method: "DELETE",
+        })
+        // 
+        fetch(`http://localhost:8088/users/${employee.userId}`, {
+            method: "DELETE",
+        })
+        // .then render the list of employees again
+            .then(getAllTheEmployees)
+
+    }
+
     return (
         <>
             <h2 className="employees__header">Employees</h2>
@@ -34,6 +58,9 @@ export const EmployeeList = () => {
                             <div>Email: {employee?.user?.email}</div>
                             <div>Location: {employee?.location?.address}</div>
                             <div>Pay Rate: ${employee.payRate} per hour</div>
+                            <button
+                                onClick={()=> {fireClick(employee)}}
+                            >Fire Employee</button>
                         </section>)
                 }
             </article>
